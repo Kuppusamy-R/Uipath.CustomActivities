@@ -83,7 +83,7 @@ namespace AES256
             using (AesManaged aes = new AesManaged())
             {
                 ICryptoTransform decryptor = aes.CreateDecryptor(Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(iv));
-                using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(cipherText)))
+                using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(cipherText)))
                 {
                     using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
                     {
